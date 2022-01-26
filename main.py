@@ -297,7 +297,7 @@ def verificar_vitoria():
         jogar_novamente();
     elif vitoria == 3:
         mostrar_tabela();
-        print('Empate! Deu VELHA.');
+        print('Empate! Deu Velha.');
         placar[2] += 1;
         jogar_novamente();
 def player1_jogada():
