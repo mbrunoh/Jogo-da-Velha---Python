@@ -73,6 +73,7 @@ def cabecalho():
     else:
         print(f'Dificuldade: {dif}')
     print(f'{cor_azul}{jogadores[0]}: {placar[0]}{cor_f} || {cor_vermelho}{jogadores[1]}: {placar[1]}{cor_f} || Empates: {placar[2]}');
+    print(f'Jogada: {rond}');
     print(41 * '~');
 def mostrar_tabela():
     y = 0;
@@ -458,6 +459,10 @@ def ia_jogada():
         gravar_velha(4);
     elif rond == 3 and velha[4] == 'X' and velha[8] == ' ':
         gravar_velha(8);
+    elif rond == 5 and velha[6] == ' ' and (velha[3] == ' ' and velha[7] == ' '):
+        gravar_velha(6);
+    elif rond == 5 and velha[2] == ' ':
+        gravar_velha(2);
 
     # JOGADAS JOGANDO SEGUNDO
     elif rond == 2 and velha[4] == ' ':
