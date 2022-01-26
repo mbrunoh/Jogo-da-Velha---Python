@@ -1,5 +1,7 @@
 from os import system
 from random import randint
+from random import choice
+
 cor_vermelho = '\033[0;31m';
 cor_vermelhoclaro = '\033[0;95m';
 cor_azul = '\033[0;34m';
@@ -23,6 +25,7 @@ dificuldade = 1;
 dif = 'Fácil';
 tipo = 0;
 vitoria = 0;
+rond = 0;
 
 def menu():
     system('clear');
@@ -101,6 +104,8 @@ def jogar_novamente():
         verificar_vitoria();
 def rodada():
     global vez
+    global rond
+    rond = rond + 1;
     system('clear');
     mostrar_tabela();
     if vez % 2 == 0:
@@ -297,7 +302,7 @@ def verificar_vitoria():
         jogar_novamente();
     elif vitoria == 3:
         mostrar_tabela();
-        print('Empate! Deu Velha.');
+        print('Empate! Deu velha.');
         placar[2] += 1;
         jogar_novamente();
 def player1_jogada():
@@ -338,7 +343,7 @@ def a_jogada():
     global velha
     global vez
     print(f'{corplayer[vez % 2]}Vez do {jogadores[1]}{cor_f}!');
-    y = randint(0, 8);
+    system('timeout 1 >null');
     while velha[y] != ' ':
         y = randint(0, 8);
     gravar_velha(y);
@@ -347,120 +352,138 @@ def ia_jogada():
     global vez
     print(f'{corplayer[vez % 2]}Vez do {jogadores[1]}{cor_f}!');
 
-    if velha[1] == 'O' and velha[1] == velha[2] and velha[0] == ' ':
+    # FINALIZAR JOGADA
+    if velha[1] == velha[2] == 'O' and velha[0] == ' ':
         gravar_velha(0);
-    elif velha[3] == 'O' and velha[3] == velha[6] and velha[0] == ' ':
+    elif velha[3] == velha[6] == 'O' and velha[0] == ' ':
         gravar_velha(0);
-    elif velha[4] == 'O' and velha[4] == velha[8] and velha[0] == ' ':
+    elif velha[4] == velha[8] == 'O' and velha[0] == ' ':
         gravar_velha(0);
-    elif velha[0] == 'O' and velha[0] == velha[2] and velha[1] == ' ':
+    elif velha[0] == velha[2] == 'O' and velha[1] == ' ':
         gravar_velha(1);
-    elif velha[4] == 'O' and velha[4] == velha[7] and velha[1] == ' ':
+    elif velha[4] == velha[7] == 'O' and velha[1] == ' ':
         gravar_velha(1);
-    elif velha[0] == 'O' and velha[0] == velha[1] and velha[2] == ' ':
+    elif velha[0] == velha[1] == 'O' and velha[2] == ' ':
         gravar_velha(2);
-    elif velha[5] == 'O' and velha[5] == velha[8] and velha[2] == ' ':
+    elif velha[5] == velha[8] == 'O' and velha[2] == ' ':
         gravar_velha(2);
-    elif velha[6] == 'O' and velha[6] == velha[4] and velha[2] == ' ':
+    elif velha[6] == velha[4] == 'O' and velha[2] == ' ':
         gravar_velha(2);
-    elif velha[4] == 'O' and velha[4] == velha[5] and velha[3] == ' ':
+    elif velha[4] == velha[5] == 'O' and velha[3] == ' ':
         gravar_velha(3);
-    elif velha[0] == 'O' and velha[0] == velha[6] and velha[3] == ' ':
+    elif velha[0] == velha[6] == 'O' and velha[3] == ' ':
         gravar_velha(3);
-    elif velha[3] == 'O' and velha[3] == velha[5] and velha[4] == ' ':
+    elif velha[3] == velha[5] == 'O' and velha[4] == ' ':
         gravar_velha(4);
-    elif velha[1] == 'O' and velha[1] == velha[7] and velha[4] == ' ':
+    elif velha[1] == velha[7] == 'O' and velha[4] == ' ':
         gravar_velha(4);
-    elif velha[0] == 'O' and velha[0] == velha[8] and velha[4] == ' ':
+    elif velha[0] == velha[8] == 'O' and velha[4] == ' ':
         gravar_velha(4);
-    elif velha[6] == 'O' and velha[6] == velha[2] and velha[4] == ' ':
+    elif velha[6] == velha[2] == 'O' and velha[4] == ' ':
         gravar_velha(4);
-    elif velha[2] == 'O' and velha[2] == velha[8] and velha[5] == ' ':
+    elif velha[2] == velha[8] == 'O' and velha[5] == ' ':
         gravar_velha(5);
-    elif velha[3] == 'O' and velha[3] == velha[4] and velha[5] == ' ':
+    elif velha[3] == velha[4] == 'O' and velha[5] == ' ':
         gravar_velha(5);
-    elif velha[0] == 'O' and velha[0] == velha[3] and velha[6] == ' ':
+    elif velha[0] == velha[3] == 'O' and velha[6] == ' ':
         gravar_velha(6);
-    elif velha[7] == 'O' and velha[7] == velha[8] and velha[6] == ' ':
+    elif velha[7] == velha[8] == 'O' and velha[6] == ' ':
         gravar_velha(6);
-    elif velha[4] == 'O' and velha[4] == velha[2] and velha[6] == ' ':
+    elif velha[4] == velha[2] == 'O' and velha[6] == ' ':
         gravar_velha(6);
-    elif velha[1] == 'O' and velha[1] == velha[4] and velha[7] == ' ':
+    elif velha[1] == velha[4] == 'O' and velha[7] == ' ':
         gravar_velha(7);
-    elif velha[6] == 'O' and velha[6] == velha[8] and velha[7] == ' ':
+    elif velha[6] == velha[8] == 'O' and velha[7] == ' ':
         gravar_velha(7);
-    elif velha[2] == 'O' and velha[2] == velha[5] and velha[8] == ' ':
+    elif velha[2] == velha[5] == 'O' and velha[8] == ' ':
         gravar_velha(8);
-    elif velha[6] == 'O' and velha[6] == velha[7] and velha[8] == ' ':
+    elif velha[6] == velha[7] == 'O' and velha[8] == ' ':
         gravar_velha(8);
-    elif velha[0] == 'O' and velha[0] == velha[4] and velha[8] == ' ':
+    elif velha[0] == velha[4] == 'O' and velha[8] == ' ':
         gravar_velha(8);
-    elif velha[1] != ' ' and velha[1] == velha[2] and velha[0] == ' ':
+
+    #BLOQUEAR JOGADA
+    elif velha[1] == velha[2] != ' ' and velha[0] == ' ':
         gravar_velha(0);
-    elif velha[3] != ' ' and velha[3] == velha[6] and velha[0] == ' ':
+    elif velha[3] == velha[6] != ' ' and velha[0] == ' ':
         gravar_velha(0);
-    elif velha[4] != ' ' and velha[4] == velha[8] and velha[0] == ' ':
+    elif velha[4] == velha[8] != ' ' and velha[0] == ' ':
         gravar_velha(0);
-    elif velha[0] != ' ' and velha[0] == velha[2] and velha[1] == ' ':
+    elif velha[0] == velha[2] != ' ' and velha[1] == ' ':
         gravar_velha(1);
-    elif velha[4] != ' ' and velha[4] == velha[7] and velha[1] == ' ':
+    elif velha[4] == velha[7] != ' ' and velha[1] == ' ':
         gravar_velha(1);
-    elif velha[0] != ' ' and velha[0] == velha[1] and velha[2] == ' ':
+    elif velha[0] == velha[1] != ' ' and velha[2] == ' ':
         gravar_velha(2);
-    elif velha[5] != ' ' and velha[5] == velha[8] and velha[2] == ' ':
+    elif velha[5] == velha[8] != ' ' and velha[2] == ' ':
         gravar_velha(2);
-    elif velha[6] != ' ' and velha[6] == velha[4] and velha[2] == ' ':
+    elif velha[6] == velha[4] != ' ' and velha[2] == ' ':
         gravar_velha(2);
-    elif velha[4] != ' ' and velha[4] == velha[5] and velha[3] == ' ':
+    elif velha[4] == velha[5] != ' ' and velha[3] == ' ':
         gravar_velha(3);
-    elif velha[0] != ' ' and velha[0] == velha[6] and velha[3] == ' ':
+    elif velha[0] == velha[6] != ' ' and velha[3] == ' ':
         gravar_velha(3);
-    elif velha[3] != ' ' and velha[3] == velha[5] and velha[4] == ' ':
+    elif velha[3] == velha[5] != ' ' and velha[4] == ' ':
         gravar_velha(4);
-    elif velha[1] != ' ' and velha[1] == velha[7] and velha[4] == ' ':
+    elif velha[1] == velha[7] != ' ' and velha[4] == ' ':
         gravar_velha(4);
-    elif velha[0] != ' ' and velha[0] == velha[8] and velha[4] == ' ':
+    elif velha[0] == velha[8] != ' ' and velha[4] == ' ':
         gravar_velha(4);
-    elif velha[6] != ' ' and velha[6] == velha[2] and velha[4] == ' ':
+    elif velha[6] == velha[2] != ' ' and velha[4] == ' ':
         gravar_velha(4);
-    elif velha[2] != ' ' and velha[2] == velha[8] and velha[5] == ' ':
+    elif velha[2] == velha[8] != ' ' and velha[5] == ' ':
         gravar_velha(5);
-    elif velha[3] != ' ' and velha[3] == velha[4] and velha[5] == ' ':
+    elif velha[3] == velha[4] != ' ' and velha[5] == ' ':
         gravar_velha(5);
-    elif velha[0] != ' ' and velha[0] == velha[3] and velha[6] == ' ':
+    elif velha[0] == velha[3] != ' ' and velha[6] == ' ':
         gravar_velha(6);
-    elif velha[7] != ' ' and velha[7] == velha[8] and velha[6] == ' ':
+    elif velha[7] == velha[8] != ' ' and velha[6] == ' ':
         gravar_velha(6);
-    elif velha[4] != ' ' and velha[4] == velha[2] and velha[6] == ' ':
+    elif velha[4] == velha[2] != ' ' and velha[6] == ' ':
         gravar_velha(6);
-    elif velha[1] != ' ' and velha[1] == velha[4] and velha[7] == ' ':
+    elif velha[1] == velha[4] != ' ' and velha[7] == ' ':
         gravar_velha(7);
-    elif velha[6] != ' ' and velha[6] == velha[8] and velha[7] == ' ':
+    elif velha[6] == velha[8] != ' ' and velha[7] == ' ':
         gravar_velha(7);
-    elif velha[2] != ' ' and velha[2] == velha[5] and velha[8] == ' ':
+    elif velha[2] == velha[5] != ' ' and velha[8] == ' ':
         gravar_velha(8);
-    elif velha[6] != ' ' and velha[6] == velha[7] and velha[8] == ' ':
+    elif velha[6] == velha[7] != ' ' and velha[8] == ' ':
         gravar_velha(8);
-    elif velha[0] != ' ' and velha[0] == velha[4] and velha[8] == ' ':
+    elif velha[0] == velha[4] != ' ' and velha[8] == ' ':
         gravar_velha(8);
-    elif velha[4] == 'O' and velha[0] == 'O' and velha[3] == ' ':
+
+    #JOGADAS JOGANDO PRIMEIRO
+    elif rond == 1:
+        gravar_velha(0);
+    elif rond == 3 and velha[4] == ' ':
+        gravar_velha(4);
+    elif rond == 3 and velha[4] == 'X' and velha[8] == ' ':
+        gravar_velha(8);
+
+    # JOGADAS JOGANDO SEGUNDO
+    elif rond == 2 and velha[4] == ' ':
+        gravar_velha(4);
+    elif rond == 2 and velha[4] == 'X':
+        gravar_velha(0);
+    elif rond == 4 and velha[4] == 'X' and velha[8] == 'X':
+        gravar_velha(2);
+
+    elif velha[4] == velha[0] == 'O' and velha[3] == ' ':
         gravar_velha(3);
-    elif velha[4] == 'O' and velha[0] == 'O' and velha[1] == ' ':
+    elif velha[4] == velha[0] == 'O' and velha[1] == ' ':
         gravar_velha(1);
-    elif velha[4] == 'O' and velha[6] == 'O' and velha[3] == ' ':
+    elif velha[4] == velha[6] == 'O' and velha[3] == ' ':
         gravar_velha(3);
-    elif velha[4] == 'O' and velha[6] == 'O' and velha[7] == ' ':
+    elif velha[4] == velha[6] == 'O' and velha[7] == ' ':
         gravar_velha(7);
-    elif velha[4] == 'O' and velha[8] == 'O' and velha[7] == ' ':
+    elif velha[4] == velha[8] == 'O' and velha[7] == ' ':
         gravar_velha(7);
-    elif velha[4] == 'O' and velha[8] == 'O' and velha[5] == ' ':
+    elif velha[4] == velha[8] == 'O' and velha[5] == ' ':
         gravar_velha(5);
-    elif velha[4] == 'O' and velha[2] == 'O' and velha[5] == ' ':
+    elif velha[4] == velha[2] == 'O' and velha[5] == ' ':
         gravar_velha(5);
-    elif velha[4] == 'O' and velha[2] == 'O' and velha[1] == ' ':
+    elif velha[4] == velha[2] == 'O' and velha[1] == ' ':
         gravar_velha(1);
-    elif velha[4] == ' ':
-        gravar_velha(4);
     elif velha[0] == 'X' or velha[2] == 'X' or velha[6] == 'X' or velha[8] == 'X':
         if velha[1] == ' ':
             gravar_velha(1);
@@ -478,6 +501,8 @@ def ia_jogada():
         gravar_velha(6);
     elif velha[8] == ' ':
         gravar_velha(8);
+
+    #JOGADA ALEATÓRIA
     else:
         y = randint(0, 8);
         while velha[y] != ' ':
@@ -494,6 +519,8 @@ def resetar():
     global corf
     global vitoria
     global jogadores
+    global rond
+    rond = 0;
     vitoria = 0;
     vez = randint(1, 2);
     for i in cori:
