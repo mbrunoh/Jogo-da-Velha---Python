@@ -1,6 +1,5 @@
 from os import system
 from random import randint
-from random import choice
 
 cor_vermelho = '\033[0;31m';
 cor_vermelhoclaro = '\033[0;95m';
