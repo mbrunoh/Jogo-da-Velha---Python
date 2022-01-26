@@ -342,7 +342,7 @@ def a_jogada():
     global velha
     global vez
     print(f'{corplayer[vez % 2]}Vez do {jogadores[1]}{cor_f}!');
-    system('timeout 1 >null');
+    y = randint(0, 8);
     while velha[y] != ' ':
         y = randint(0, 8);
     gravar_velha(y);
@@ -521,7 +521,7 @@ def resetar():
     global rond
     rond = 0;
     vitoria = 0;
-    vez = randint(1, 2);
+    vez = randint(0, 1);
     for i in cori:
         i = cor_padrao;
     cori = ['', '', '', '', '', '', '', '', ''];
